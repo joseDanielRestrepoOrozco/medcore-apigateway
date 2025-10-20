@@ -1,0 +1,13 @@
+services:
+  apigateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medcore-apigateway
+    image: medcore-apigateway
+    environment:
+      - PORT=3000
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
