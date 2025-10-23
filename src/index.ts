@@ -1,5 +1,6 @@
 import gateway from 'fast-gateway';
 import helmet from 'helmet';
+import cors from 'cors';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
 import type { IncomingMessage, ServerResponse } from 'http';
 import {
@@ -7,6 +8,7 @@ import {
   diagnosticServiceUrl,
   patientServiceUrl,
   userServiceUrl,
+  allowedOrigins,
 } from './libs/config.js';
 
 const rateLimiter = new RateLimiterMemory({
@@ -32,8 +34,16 @@ const rateLimiterMiddleware = async (
   }
 };
 
+const corsMiddleware = cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204,
+});
+
 const server = gateway({
-  middlewares: [helmet(), rateLimiterMiddleware],
+  middlewares: [corsMiddleware, helmet(), rateLimiterMiddleware],
   routes: [
     /**
      * RUTAS DUPLICADAS CON Y SIN BARRA FINAL
