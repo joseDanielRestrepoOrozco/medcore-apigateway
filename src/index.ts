@@ -100,6 +100,17 @@ const server = gateway({
       target: `${diagnosticServiceUrl}`,
       prefixRewrite: '/api/v1/diagnostics',
     },
+    // Document Management Service
+    {
+      prefix: '/api/v1/documents',
+      target: `${diagnosticServiceUrl}`,
+      prefixRewrite: '/api/v1/documents',
+    },
+    {
+      prefix: '/api/v1/documents/',
+      target: `${diagnosticServiceUrl}`,
+      prefixRewrite: '/api/v1/documents',
+    },
   ],
 });
 
