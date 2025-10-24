@@ -10,8 +10,8 @@ import {
 } from './libs/config.js';
 
 const rateLimiter = new RateLimiterMemory({
-  points: 100, // 100 requests
-  duration: 3 * 60, // por 3 minutos
+  points: 1000, // 1000 requests
+  duration: 60 * 60, // por 1 hora
 });
 
 const rateLimiterMiddleware = async (
@@ -37,15 +37,15 @@ const server = gateway({
   routes: [
     /**
      * RUTAS DUPLICADAS CON Y SIN BARRA FINAL
-     * 
+     *
      * Las rutas están duplicadas para manejar ambos casos:
      * - Con barra final: "/api/v1/auth/"
      * - Sin barra final: "/api/v1/auth"
-     * 
+     *
      * Esto es necesario porque:
      * 1. Los clientes pueden hacer peticiones con o sin barra final de manera inconsistente
      * 2. fast-gateway es estricto con el matching de rutas y no maneja automáticamente esta normalización
-     * 3. Sin estas rutas duplicadas, requests como "/api/v1/auth" y "/api/v1/auth/" 
+     * 3. Sin estas rutas duplicadas, requests como "/api/v1/auth" y "/api/v1/auth/"
      *    podrían resultar en 404 dependiendo de cómo el cliente construya la URL
      * 4. Esto garantiza compatibilidad total independientemente del formato usado por el frontend
      */
