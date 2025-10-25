@@ -5,7 +5,6 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import {
   authServiceUrl,
   diagnosticServiceUrl,
-  patientServiceUrl,
   userServiceUrl,
 } from './libs/config.js';
 
@@ -71,16 +70,6 @@ const server = gateway({
       prefixRewrite: '/api/v1/users',
     },
     {
-      prefix: '/api/v1/patients',
-      target: `${patientServiceUrl}`,
-      prefixRewrite: '/api/v1/patients',
-    },
-    {
-      prefix: '/api/v1/patients/',
-      target: `${patientServiceUrl}`,
-      prefixRewrite: '/api/v1/patients',
-    },
-    {
       prefix: '/api/v1/diagnostics',
       target: `${diagnosticServiceUrl}`,
       prefixRewrite: '/api/v1/diagnostics',
@@ -89,6 +78,26 @@ const server = gateway({
       prefix: '/api/v1/diagnostics/',
       target: `${diagnosticServiceUrl}`,
       prefixRewrite: '/api/v1/diagnostics',
+    },
+    {
+      prefix: '/api/v1/especialties',
+      target: `${authServiceUrl}`,
+      prefixRewrite: '/api/v1/especialties',
+    },
+    {
+      prefix: '/api/v1/especialties/',
+      target: `${authServiceUrl}`,
+      prefixRewrite: '/api/v1/especialties',
+    },
+    {
+      prefix: '/api/v1/departments',
+      target: `${authServiceUrl}`,
+      prefixRewrite: '/api/v1/departments',
+    },
+    {
+      prefix: '/api/v1/departments/',
+      target: `${authServiceUrl}`,
+      prefixRewrite: '/api/v1/departments',
     },
   ],
 });
