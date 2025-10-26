@@ -80,14 +80,14 @@ const server = gateway({
       prefixRewrite: '/api/v1/diagnostics',
     },
     {
-      prefix: '/api/v1/especialties',
+      prefix: '/api/v1/specialties',
       target: `${authServiceUrl}`,
-      prefixRewrite: '/api/v1/especialties',
+      prefixRewrite: '/api/v1/specialties',
     },
     {
-      prefix: '/api/v1/especialties/',
+      prefix: '/api/v1/specialties/',
       target: `${authServiceUrl}`,
-      prefixRewrite: '/api/v1/especialties',
+      prefixRewrite: '/api/v1/specialties',
     },
     {
       prefix: '/api/v1/departments',
