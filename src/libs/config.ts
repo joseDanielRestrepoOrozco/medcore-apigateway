@@ -7,3 +7,4 @@ export const userServiceUrl = process.env.USER_SERVICE_URL;
 export const patientServiceUrl = process.env.PATIENT_SERVICE_URL;
 export const diagnosticServiceUrl = process.env.DIAGNOSTIC_SERVICE_URL;
 export const frontendServiceUrl = process.env.FRONTEND_SERVICE_URL;
+export const appointmentServiceUrl = process.env.APPOINTMENT_SERVICE_URL || 'http://localhost:3003';

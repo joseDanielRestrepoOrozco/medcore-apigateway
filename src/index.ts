@@ -6,6 +6,7 @@ import {
   authServiceUrl,
   diagnosticServiceUrl,
   userServiceUrl,
+  appointmentServiceUrl,
 } from './libs/config.js';
 
 const rateLimiter = new RateLimiterMemory({
@@ -98,6 +99,16 @@ const server = gateway({
       prefix: '/api/v1/departments/',
       target: `${authServiceUrl}`,
       prefixRewrite: '/api/v1/departments',
+    },
+    {
+      prefix: '/api/v1/appointments',
+      target: `${appointmentServiceUrl}`,
+      prefixRewrite: '/api/appointments',
+    },
+    {
+      prefix: '/api/v1/appointments/',
+      target: `${appointmentServiceUrl}`,
+      prefixRewrite: '/api/appointments',
     },
   ],
 });
