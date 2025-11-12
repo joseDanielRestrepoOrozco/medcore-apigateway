@@ -110,6 +110,31 @@ const server = gateway({
       target: `${appointmentServiceUrl}`,
       prefixRewrite: '/api/appointments',
     },
+    // Fallback proxies: some clients/edge cases hit the exact path and fast-gateway
+    // route matching might not always rewrite as expected. These fallback rules
+    // forward directly to the appointments service base path to ensure local
+    // proxying works reliably in development.
+    {
+      prefix: '/api/v1/appointments',
+      target: `${appointmentServiceUrl}/api/appointments`,
+      prefixRewrite: '/',
+    },
+    {
+      prefix: '/api/v1/appointments/',
+      target: `${appointmentServiceUrl}/api/appointments`,
+      prefixRewrite: '/',
+    },
+    // Queue (waiting list) endpoints - forward to appointment service
+    {
+      prefix: '/api/queue',
+      target: `${appointmentServiceUrl}`,
+      prefixRewrite: '/api/queue',
+    },
+    {
+      prefix: '/api/queue/',
+      target: `${appointmentServiceUrl}`,
+      prefixRewrite: '/api/queue',
+    },
   ],
 });
 
