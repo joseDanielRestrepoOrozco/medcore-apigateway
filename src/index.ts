@@ -8,6 +8,7 @@ import {
   userServiceUrl,
   appointmentServiceUrl,
   prescriptionServiceUrl,
+  medicalOrdersServiceUrl,
 } from './libs/config.js';
 
 const rateLimiter = new RateLimiterMemory({
@@ -140,6 +141,26 @@ const server = gateway({
       prefix: '/api/v1/allergies/',
       target: `${prescriptionServiceUrl}`,
       prefixRewrite: '/api/v1/allergies',
+    },
+    {
+      prefix: '/api/v1/medical-orders',
+      target: `${medicalOrdersServiceUrl}`,
+      prefixRewrite: '/api/v1/medical-orders',
+    },
+    {
+      prefix: '/api/v1/medical-orders/',
+      target: `${medicalOrdersServiceUrl}`,
+      prefixRewrite: '/api/v1/medical-orders',
+    },
+    {
+      prefix: '/api/v1/exam-templates',
+      target: `${medicalOrdersServiceUrl}`,
+      prefixRewrite: '/api/v1/exam-templates',
+    },
+    {
+      prefix: '/api/v1/exam-templates/',
+      target: `${medicalOrdersServiceUrl}`,
+      prefixRewrite: '/api/v1/exam-templates',
     },
   ],
 });
